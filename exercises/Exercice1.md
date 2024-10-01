@@ -33,6 +33,15 @@ public int concatAtt12(){return att1 + att2;}
 public int concatAtt23(){return att2 + att3;} // here we have like an indirect connection with concatAtt12() because both of them use att2 so they are indirectly connected because of them share the methods of the attribute att2
 
 }
+```   
+We can see an Open Source example from https://github.com/apache/commons-lang/blob/master/src/main/java/org/apache/commons/lang3/StringUtils.java#L3666 in **StringUtils.java**. As we can see here is part of the code where we can see a direct connection between methods :   
+```Java
+  public static boolean isEmpty(final CharSequence cs) {
+        return cs == null || cs.length() == 0;
+    }
+//As we see the isNotEmpty method uses isEmpty method are directly connected equal 1 which means TCC and LCC are equal 
+public static boolean isNotEmpty(final CharSequence cs) {
+        return !isEmpty(cs);
+    }
 ```
-
-
+LCC could never be less than TCC because LCC contains direct and indirect connection which means it'll be always greater or equals . 
