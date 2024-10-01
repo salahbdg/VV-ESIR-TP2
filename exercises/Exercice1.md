@@ -8,10 +8,11 @@ A refresher on TCC and LCC is available in the [course notes](https://oscarlvp.g
 Tight Class Cohesion and Loose Class Cohesion metrics produce the same value for a given Java Class when  there is all method pairs that are indirectly connected are directly connected, which means when a method access to an attribute, it must always share it  with other methods that also access it, eliminating  the possibility indirect connections.
 
 There's an example of methods directly connected : 
-class ExampleDirectlyConnected{
-private int att1;
+
+\n class ExampleDirectlyConnected{
+\n private int att1;
 
 private int att2;
-public int getAtt1(){return att1;}
+\n public int getAtt1(){return att1;}
 public void setAtt1(int att1){this.att1 = att1;}
 }
