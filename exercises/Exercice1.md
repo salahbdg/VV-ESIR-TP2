@@ -9,9 +9,11 @@ Tight Class Cohesion and Loose Class Cohesion metrics produce the same value for
 
 There's an example of methods directly connected : 
 
+```
 class ExampleDirectlyConnected{  
 private int att1;
 private int att2;
 public int getAtt1(){return att1;}
 public void setAtt1(int att1){this.att1 = att1;}
 }
+```
