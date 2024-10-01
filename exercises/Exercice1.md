@@ -12,7 +12,6 @@ There's an example of methods directly connected :
 ```Java
 class ExampleDirectlyConnected{  
 private int att1;
-private int att2;
 public int getAtt1(){return att1;}
 public void setAtt1(int att1){this.att1 = att1;}
 }
@@ -27,8 +26,6 @@ private int att2;
 private int att3;
 public int getAtt1(){return att1;}
 public int getAtt2(){return att2;}
-public void setAtt1(int att1){this.att1 = att1;}
-public void setAtt2(int att2){this.att2 = att2;}
 public int concatAtt12(){return att1 + att2;}
 public int concatAtt23(){return att2 + att3;} // here we have like an indirect connection with concatAtt12() because both of them use att2 so they are indirectly connected because of them share the methods of the attribute att2
 
