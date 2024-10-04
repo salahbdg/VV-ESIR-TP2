@@ -11,6 +11,6 @@ You may use [javaparser-starter](../code/javaparser-starter) as a starting point
 
 # Answer Comparaison with 2 Projects    
 
-We generated Histograms that describe the Cyclomatic Complexity for 2 differents Open   Projects of Appache one is _Commons_Collections_ and the _second Commons_CLI_
+We generated Histograms that describe the Cyclomatic Complexity for 2 differents Open   Projects of Appache one is _Commons_Collections_ and the second __Commons_CLI_
 
 
