@@ -7,6 +7,7 @@ A refresher on TCC and LCC is available in the [course notes](https://oscarlvp.g
 ## Answer
 Tight Class Cohesion and Loose Class Cohesion metrics produce the same value for a given Java Class when  there is all method pairs that are indirectly connected are directly connected, which means when a method access to an attribute, it must always share it  with other methods that also access it, eliminating  the possibility indirect connections.
 
+
 There's an example of methods directly connected : 
 
 ```Java
@@ -42,3 +43,5 @@ public static boolean isNotEmpty(final CharSequence cs) {
     }
 ```
 LCC could never be less than TCC because LCC contains direct and indirect connection which means it'll be always greater or equals . 
+
+
