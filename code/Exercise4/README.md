@@ -25,7 +25,7 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
         for (TypeDeclaration<?> tp : unit.getTypes()) {
             if (tp instanceof ClassOrInterfaceDeclaration) {
 // call the corresponding method depending on the type of declaration
-                visitorClassOrInterface((ClassOrInterfaceDeclaration) tp,namePackage);
+                visitorClassOrInterface((ClassOrInterfaceDeclaration) tp,nP);
             }
         }
         super.visit(unit, arg);
@@ -59,7 +59,7 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
         }
 
         //checking if there's no public getters for the private fields
-        for (String fname : privateFields.keySet()) {
+        for (String fname : prvF.keySet()) {
             if (!pubF.contains(fname)){
                 report.add(String.format("Fields : %s, Class: %s", fname, name));
             }
