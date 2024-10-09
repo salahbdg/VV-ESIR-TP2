@@ -25,29 +25,29 @@ public class CyclomaticComplexity extends VoidVisitorAdapter<Void> {
     }
 
     //method to visit the nodes
-    private void visitMethod(MethodDeclaration method, String packageName, String className) {
+    private void visitMethod(MethodDeclaration mtd, String pN, String className) {
         // Start Cyclomatic Complexity at 1 (by definition)
         int c = 1;
 
         // Count control structures
-        c += method.findAll(IfStmt.class).size();
-        c += method.findAll(ForStmt.class).size();
-        c += method.findAll(WhileStmt.class).size();
-        c += method.findAll(DoStmt.class).size();
-        c += method.findAll(SwitchEntry.class).size();
-        c += method.findAll(CatchClause.class).size();
+        c += mtd.findAll(IfStmt.class).size();
+        c += mtd.findAll(ForStmt.class).size();
+        c += mtd.findAll(WhileStmt.class).size();
+        c += mtd.findAll(DoStmt.class).size();
+        c += mtd.findAll(SwitchEntry.class).size();
+        c += mtd.findAll(CatchClause.class).size();
 
-        // Collect method details and the complexity
-        String mtdName = method.getName().toString();
-        String param = method.getParameters().toString();
+        // Collect the details of the methods and their complexity
+        String mtdName = mtd.getName().toString();
+        String param = mtd.getParameters().toString();
 
         //debugg just to verify if it works 
-        System.out.println(String.format("Method: %s in Class: %s with CC: %d",method,className,c));
+        System.out.println(String.format("Method: %s in Class: %s with CC: %d",mtd,className,c));
 
 
 
         report.add(String.format("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%d</td></tr>",
-                packageName, className, mtdName, param, c));
+                pN, className, mtdName, param, c));
 
 
         // Add to complexity values list for histogram
