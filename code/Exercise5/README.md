@@ -36,19 +36,19 @@ public class Main {
         
         SourceRoot root = new SourceRoot(Paths.get(file.getAbsolutePath()));
        
-        CyclomaticComplexity calculator = new CyclomaticComplexity();
+        CyclomaticComplexity cp = new CyclomaticComplexity();
         root.parse("", (localPath, absolutePath, result) -> {
-            result.ifSuccessful(unit -> unit.accept(calculator, null));
+            result.ifSuccessful(unit -> unit.accept(cp, null));
             return SourceRoot.Callback.Result.DONT_SAVE;
         });
         //output
-        //printer.generateReport("output.txt");
-        calculator.generateReport("CyclomaticComplexity.html");
+
+        cp.generateReport("CyclomaticComplexity.html");
         // Get the list of Cyclomatic Complexity values
-        List<Integer> complexityValues = calculator.getComplexityValues();
+        List<Integer> compVal = cp.getComplexityValues();
 
         // Generate the histogram in CSV format
-        CyclomaticComplexityHistogram histogramGenerator = new CyclomaticComplexityHistogram(complexityValues);
+        CyclomaticComplexityHistogram histGen = new CyclomaticComplexityHistogram(compVal);
         histogramGenerator.generateHistogramCSV("cc_histo.csv");
 
     }
