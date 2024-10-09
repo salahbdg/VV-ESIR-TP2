@@ -19,7 +19,7 @@ with src is the source code of commons-math library.
 PMD has detected many problems that could be source of bugs, often due to poor coding practice.
 
 For example
-Here is an example of a warning. It is true that the outer parathesis are not useful in this context, they can be removed, so this warning can be identified as true positive.
+Here is an example of a warning. It is true that the outer paranthesis are not useful in this context, they can be removed, so this warning can be identified as true positive.
 
 
 > [!WARNING]
