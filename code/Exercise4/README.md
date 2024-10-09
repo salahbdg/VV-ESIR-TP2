@@ -24,7 +24,7 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
         String nP = unit.getPackageDeclaration().map(pd -> pd.getName().toString()).orElse("None");
         for (TypeDeclaration<?> tp : unit.getTypes()) {
             if (tp instanceof ClassOrInterfaceDeclaration) {
-// call the convenient method depending on the type of declaration
+// call the corresponding method depending on the type of declaration
                 visitorClassOrInterface((ClassOrInterfaceDeclaration) tp,namePackage);
             }
         }
@@ -61,11 +61,12 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
         //checking if there's no public getters for the private fields
         for (String fname : privateFields.keySet()) {
             if (!pubF.contains(fname)){
-                report.add(String.format("Fields : %s, Package: %s, Class: %s", fname, nP, name));
+                report.add(String.format("Fields : %s, Class: %s", fname, name));
             }
         }
     }
 
+//generating the report with all the field and their corresponding class
     public void generateReport(String fpath) {
         try(FileWriter wr = new FileWriter(fpath)){
             wr.write("Private fields without getters: \n");
