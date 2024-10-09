@@ -60,3 +60,7 @@ public class Main {
 }
 
 ```
+# Example of the report generated   
+
+![image](https://github.com/user-attachments/assets/a21ebe20-b96c-4b1b-9fcc-4654c6e20ddf)
+
