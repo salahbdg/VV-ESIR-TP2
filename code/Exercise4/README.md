@@ -20,7 +20,7 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
 
     @Override
     public void visit(CompilationUnit unit, Void arg) {
-        String namePackage = unit.getPackageDeclaration().map(pd -> pd.getName().toString()).orElse("None");
+        String nP = unit.getPackageDeclaration().map(pd -> pd.getName().toString()).orElse("None");
         for (TypeDeclaration<?> tp : unit.getTypes()) {
             if (tp instanceof ClassOrInterfaceDeclaration) {
                 visitorClassOrInterface((ClassOrInterfaceDeclaration) tp,namePackage);
