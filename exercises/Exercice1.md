@@ -32,7 +32,7 @@ public int concatAtt23(){return att2 + att3;} // here we have like an indirect c
 
 }
 ```   
-We can see an Open Source example from https://github.com/apache/commons-lang/blob/master/src/main/java/org/apache/commons/lang3/StringUtils.java#L3666 in **StringUtils.java**. As we can see here is part of the code where we can see a direct connection between methods :   
+We can see an Open Source example from <a href='https://github.com/apache/commons-lang/blob/master/src/main/java/org/apache/commons/lang3/StringUtils.java#L3666'> Apache </a> in **StringUtils.java**. As we can see here is part of the code where we can see a direct connection between methods :   
 ```Java
   public static boolean isEmpty(final CharSequence cs) {
         return cs == null || cs.length() == 0;
