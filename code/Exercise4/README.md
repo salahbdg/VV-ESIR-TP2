@@ -14,32 +14,34 @@ import java.io.IOException;
 import java.util.*;
 
 public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
-    //store the details of the fields without getters
+    //store the details of the private fields without public getters
     private final List<String> report = new ArrayList<>();
 
 
     @Override
     public void visit(CompilationUnit unit, Void arg) {
+// extracting the package name if it does exist
         String nP = unit.getPackageDeclaration().map(pd -> pd.getName().toString()).orElse("None");
         for (TypeDeclaration<?> tp : unit.getTypes()) {
             if (tp instanceof ClassOrInterfaceDeclaration) {
+// call the convenient method depending on the type of declaration
                 visitorClassOrInterface((ClassOrInterfaceDeclaration) tp,namePackage);
             }
         }
         super.visit(unit, arg);
     }
-
+// method to search for all the private fields and the public getters
     public void visitorClassOrInterface(ClassOrInterfaceDeclaration cd, String namePackage) {
         if (!cd.isPublic()) {return;}
         String name = cd.getName().toString();
-        Map<String, FieldDeclaration> privateFields = new HashMap<>();
-        Set<String> publicFields = new HashSet<>();//getters
+        Map<String, FieldDeclaration> prvF = new HashMap<>();
+        Set<String> pubF = new HashSet<>();//storing getters
 
         //Collection of all private fields
-        for (FieldDeclaration fd : cd.getFields()) {
-            if (fd.isPrivate()) {
+        for (FieldDecleration fd : cd.getFields()) {
+            if (fd.isPrivate()) { //just the fiels that are private
                 for (VariableDeclarator vd : fd.getVariables()) {
-                    privateFields.put(vd.getName().toString(), fd);
+                    prvF.put(vd.getName().toString(), fd);
                 }
             }
         }
@@ -47,28 +49,28 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
         //collection of all public getters
         for (MethodDeclaration mtd : cd.getMethods()) {
             if (mtd.isPublic()) {
-                String methodName = mtd.getName().toString();
+                String mtdName = mtd.getName().toString();
                 //check if it's a getter
-                if (methodName.startsWith("get") && mtd.getParameters().isEmpty()) {
+                if (mtdName.startsWith("get") && mtd.getParameters().isEmpty()) {
                     String fname = methodName.substring(3,4).toLowerCase() + methodName.substring(4);
-                    publicFields.add(fname);
+                    pubF.add(fname);
                 }
             }
         }
 
-        //checking if there's no public getters
+        //checking if there's no public getters for the private fields
         for (String fname : privateFields.keySet()) {
-            if (!publicFields.contains(fname)){
-                report.add(String.format("Fields : %s, Package: %s, Class: %s", fname, namePackage, name));
+            if (!pubF.contains(fname)){
+                report.add(String.format("Fields : %s, Package: %s, Class: %s", fname, nP, name));
             }
         }
     }
 
     public void generateReport(String fpath) {
-        try(FileWriter writer = new FileWriter(fpath)){
-            writer.write("Private fields without getters: \n");
+        try(FileWriter wr = new FileWriter(fpath)){
+            wr.write("Private fields without getters: \n");
             for (String ent: report){
-                writer.write(ent + "\n");
+                wr.write(ent + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
