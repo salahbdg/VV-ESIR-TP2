@@ -20,7 +20,6 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
 
     @Override
     public void visit(CompilationUnit unit, Void arg) {
-// extracting the package name if it does exist
         
         for (TypeDeclaration<?> tp : unit.getTypes()) {
             if (tp instanceof ClassOrInterfaceDeclaration) {
