@@ -21,17 +21,17 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
     @Override
     public void visit(CompilationUnit unit, Void arg) {
 // extracting the package name if it does exist
-        String nP = unit.getPackageDeclaration().map(pd -> pd.getName().toString()).orElse("None");
+        
         for (TypeDeclaration<?> tp : unit.getTypes()) {
             if (tp instanceof ClassOrInterfaceDeclaration) {
 // call the corresponding method depending on the type of declaration
-                visitorClassOrInterface((ClassOrInterfaceDeclaration) tp,nP);
+                visitorClassOrInterface((ClassOrInterfaceDeclaration) tp);
             }
         }
         super.visit(unit, arg);
     }
 // method to search for all the private fields and the public getters
-    public void visitorClassOrInterface(ClassOrInterfaceDeclaration cd, String nP) {
+    public void visitorClassOrInterface(ClassOrInterfaceDeclaration cd) {
         if (!cd.isPublic()) {return;}
         String name = cd.getName().toString();
         Map<String, FieldDeclaration> prvF = new HashMap<>();
