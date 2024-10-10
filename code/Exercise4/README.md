@@ -31,7 +31,7 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
         super.visit(unit, arg);
     }
 // method to search for all the private fields and the public getters
-    public void visitorClassOrInterface(ClassOrInterfaceDeclaration cd, String namePackage) {
+    public void visitorClassOrInterface(ClassOrInterfaceDeclaration cd, String nP) {
         if (!cd.isPublic()) {return;}
         String name = cd.getName().toString();
         Map<String, FieldDeclaration> prvF = new HashMap<>();
