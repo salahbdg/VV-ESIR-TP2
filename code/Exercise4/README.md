@@ -78,3 +78,6 @@ public class PrivateElementChecker extends VoidVisitorAdapter<Void> {
     }
 }
 ```
+
+# Here is an example of the output report    
+![image](https://github.com/user-attachments/assets/9986cc2c-b497-4372-b557-01b13bf27a8d)
